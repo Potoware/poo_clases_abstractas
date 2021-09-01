@@ -6,6 +6,10 @@ import com.potoware.pooclasesabstractas.form.elementos.SelectForm;
 import com.potoware.pooclasesabstractas.form.elementos.TextAreaForm;
 import com.potoware.pooclasesabstractas.form.elementos.select.Opcion;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class EjemploForm{
 
     public static void main(String[] args) {
@@ -20,18 +24,25 @@ public class EjemploForm{
         SelectForm lenguaje = new SelectForm("lenguaje");
         Opcion java = new Opcion();
         java = new Opcion("1","Java");
-        lenguaje.addOpcion(java);
-        lenguaje.addOpcion(new Opcion("2","Javascript"));
-        lenguaje.addOpcion(new Opcion("3","Jquery"));
-        lenguaje.addOpcion(new Opcion("4","PHP"));
-        lenguaje.addOpcion(new Opcion("5","PowerQuery"));
+        lenguaje.addOpcion(java)
+        .addOpcion(new Opcion("2","Javascript"))
+        .addOpcion(new Opcion("3","Jquery"))
+        .addOpcion(new Opcion("4","PHP"))
+        .addOpcion(new Opcion("5","PowerQuery"));
 
         username.setValor("apotosimo");
         password.setValor("a12345");
         email.setValor("apotosimo@potoware.com");
         edad.setValor("23");
+        experiencia.setValor("...mas de 10 años de experiencia");
         java.setSelected(true);
 
+        List<ElementoForm> elementos = Arrays.asList(username, password, edad, email, experiencia, lenguaje);
+
+        for(ElementoForm e:elementos){
+            System.out.println(e.dibujarHtml());
+            System.out.println("<br>");
+        }
 
     }
 }

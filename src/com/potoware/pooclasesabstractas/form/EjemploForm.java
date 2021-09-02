@@ -44,9 +44,9 @@ public class EjemploForm{
         };
         saludar.setValor("Hola estoy saludando :v");
         username.setValor("apotosimo");
-        password.setValor("12345");
+        password.setValor("1234578");
         email.setValor("apotosimopotoware.com");
-        edad.setValor("23");
+        edad.setValor("l");
         experiencia.setValor("...mas de 10 años de experiencia");
 
         List<ElementoForm> elementos = Arrays.asList(username, password, edad, email, experiencia, lenguaje,saludar);
@@ -57,8 +57,7 @@ public class EjemploForm{
         }
             elementos.forEach(f ->{
                 if (!f.esValido()) {
-                    f.getErrores().forEach(err ->
-                            System.out.println(f.getNombre()+" "+err));
+                    f.getErrores().forEach(System.out::println);
                 }
                 });
 

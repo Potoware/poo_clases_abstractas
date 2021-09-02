@@ -37,14 +37,10 @@ abstract public class ElementoForm {
         return errores;
     }
 
-    public String getNombre() {
-        return nombre;
-    }
-
     public boolean esValido(){
         for(Validador v: validadores){
             if(!v.esValido(valor)){
-                this.errores.add(v.getMensaje());
+                this.errores.add(String.format(v.getMensaje(),nombre));
             }
         }
         return this.errores.isEmpty();

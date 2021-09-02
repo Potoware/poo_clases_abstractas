@@ -2,7 +2,7 @@ package com.potoware.pooclasesabstractas.form.validador;
 
 public class EmailValidador extends Validador{
 
-    protected String mensaje = "el formato del email es invalido";
+    protected String mensaje = "el formato del %s es invalido";
     private final static  String EMAIL_REGEX = "^(.+)@(.+).(.+)$";
     @Override
     public void setMensaje(String mensaje) {

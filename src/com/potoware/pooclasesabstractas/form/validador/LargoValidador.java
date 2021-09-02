@@ -34,16 +34,11 @@ public class LargoValidador extends Validador{
 
     @Override
     public boolean esValido(String valor) {
-       this.mensaje = String.format(this.mensaje,this.max,this.max);
-
-       if (valor == null){
-           return true;
-       }
-        if(valor.length() <= min && valor.length() > max){
-            return true;
-        }
-        else {
-            return false;
-        }
+       this.mensaje = String.format(this.mensaje,this.min,this.max);
+    if(valor==null){
+        return true;
+    }
+    int largo = valor.length();
+    return (largo>=min && largo<=max);
     }
 }

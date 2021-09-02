@@ -10,15 +10,13 @@ abstract public class ElementoForm {
     protected String valor;
     protected String nombre;
 
-    public ElementoForm(List<Validador> validadores) {
-        this.validadores = new ArrayList<>();
-        this.errores = new ArrayList<>();
-    }
-
     private List<Validador>validadores;
+
     private List<String>errores;
 
     public ElementoForm() {
+        this.validadores = new ArrayList<>();
+        this.errores = new ArrayList<>();
     }
 
     public ElementoForm(String nombre) {
@@ -37,6 +35,10 @@ abstract public class ElementoForm {
 
     public List<String> getErrores() {
         return errores;
+    }
+
+    public String getNombre() {
+        return nombre;
     }
 
     public boolean esValido(){

@@ -2,6 +2,7 @@ package com.potoware.pooclasesabstractas.form;
 
 import com.potoware.pooclasesabstractas.form.elementos.*;
 import com.potoware.pooclasesabstractas.form.elementos.select.Opcion;
+import com.potoware.pooclasesabstractas.form.validador.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -12,13 +13,21 @@ public class EjemploForm{
     public static void main(String[] args) {
 
         InputForm username = new InputForm("username");
-        InputForm password = new InputForm("clave", "password");
-        InputForm email = new InputForm("email","email");
-        InputForm edad = new InputForm("edad", "number");
+        username.addValidador(new RequeridoValidador());
 
+        InputForm password = new InputForm("clave", "password");
+        password.addValidador(new RequeridoValidador());
+        password.addValidador(new LargoValidador(6,12));
+
+        InputForm email = new InputForm("email","email");
+        email.addValidador(new EmailValidador()).addValidador(new NoNulo());
+
+        InputForm edad = new InputForm("edad", "number");
+        edad.addValidador(new NumeroValidador());
         TextAreaForm experiencia = new TextAreaForm("exp",5,9);
 
         SelectForm lenguaje = new SelectForm("lenguaje");
+        lenguaje.addValidador(new NoNulo());
         Opcion java = new Opcion();
         java = new Opcion("1","Java");
         lenguaje.addOpcion(java)
@@ -35,17 +44,24 @@ public class EjemploForm{
         };
         saludar.setValor("Hola estoy saludando :v");
         username.setValor("apotosimo");
-        password.setValor("a12345");
-        email.setValor("apotosimo@potoware.com");
+        password.setValor("12345");
+        email.setValor("apotosimopotoware.com");
         edad.setValor("23");
         experiencia.setValor("...mas de 10 años de experiencia");
 
         List<ElementoForm> elementos = Arrays.asList(username, password, edad, email, experiencia, lenguaje,saludar);
 
-        for(ElementoForm e:elementos){
+        for(ElementoForm e:elementos) {
             System.out.println(e.dibujarHtml());
             System.out.println("<br>");
         }
+            elementos.forEach(f ->{
+                if (!f.esValido()) {
+                    f.getErrores().forEach(err ->
+                            System.out.println(f.getNombre()+" "+err));
+                }
+                });
+
 
     }
 }

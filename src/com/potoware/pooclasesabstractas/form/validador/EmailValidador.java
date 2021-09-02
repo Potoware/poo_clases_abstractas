@@ -11,7 +11,7 @@ public class EmailValidador extends Validador{
 
     @Override
     public String getMensaje() {
-        return null;
+        return mensaje;
     }
 
     @Override

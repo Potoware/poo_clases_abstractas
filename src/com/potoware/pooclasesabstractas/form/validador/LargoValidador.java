@@ -1,6 +1,8 @@
 package com.potoware.pooclasesabstractas.form.validador;
 
-public class LargoValidador extends Validador{
+import com.potoware.pooclasesabstractas.form.validador.mensaje.MensajeFormateable;
+
+public class LargoValidador extends Validador implements MensajeFormateable {
 
     protected String mensaje = "el campo debe tener un minimo %d caracteres y maximo %d caracteres";
     private int min=0;
@@ -40,5 +42,10 @@ public class LargoValidador extends Validador{
     }
     int largo = valor.length();
     return (largo>=min && largo<=max);
+    }
+
+    @Override
+    public String getMensajeFormateado(String campo) {
+        return String.format(this.mensaje,campo,this.min,this.max);
     }
 }
